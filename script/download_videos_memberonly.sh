@@ -1,6 +1,11 @@
 #!/bin/bash
 
-LOG=download_chats_memberonly.log
+cd `dirname $0`
+cd ..
+
+mkdir -p log
+
+LOG=log/download_videos_memberonly.log
 
 exec 1> >(
   while read -r l; do echo "[$(date +"%Y-%m-%d %H:%M:%S")] $l"; done \
@@ -11,10 +16,10 @@ exec 2> >(
     | tee -a $LOG
 )
 
-mkdir -p chat_memberonly
+mkdir -p video_memberonly
 
 while read line
 do
   videourl='https://youtu.be/'"$line"
-  yt-dlp -o "chat/%(upload_date)s_%(title)s_[%(id)s].%(ext)s" --skip-download --youtube-skip-dash-manifest --write-sub --write-comments --cookies youtube.com_cookies.txt "$videourl"
+  yt-dlp -o "video_memberonly/%(upload_date)s_%(title)s_[%(id)s].%(ext)s" -f "bestvideo+bestaudio/best" --add-metadata --embed-thumbnail --cookies youtube.com_cookies.txt "$videourl"
 done < videoids_memberonly.txt

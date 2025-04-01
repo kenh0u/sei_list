@@ -1,6 +1,11 @@
 #!/bin/bash
 
-LOG=download_thumbnails_memberonly.log
+cd `dirname $0`
+cd ..
+
+mkdir -p log
+
+LOG=log/download_thumbnails_memberonly.log
 
 exec 1> >(
   while read -r l; do echo "[$(date +"%Y-%m-%d %H:%M:%S")] $l"; done \
@@ -16,7 +21,7 @@ mkdir -p thumbnail_memberonly
 while read line
 do
   thumbnailurl='https://i.ytimg.com/vi/'"$line"'/maxresdefault.jpg'
-  output='thumbnail/'"$line"'.jpg'
+  output='thumbnail_memberonly/'"$line"'.jpg'
   wget -O "$output" "$thumbnailurl"
   if [ $? -ne 0 ];then
     thumbnailurl='https://i.ytimg.com/vi/'"$line"'/sddefault.jpg'
