@@ -21,5 +21,5 @@ mkdir -p chat
 while read line
 do
   videourl='https://youtu.be/'"$line"
-  yt-dlp -o "chat/%(upload_date)s_%(title)s_[%(id)s].%(ext)s" --skip-download --youtube-skip-dash-manifest --write-sub --write-comments --cookies youtube.com_cookies.txt "$videourl"
+  yt-dlp -o "chat/%(upload_date)s_%(title).190B_[%(id)s].%(ext)s" --skip-download --youtube-skip-dash-manifest --write-sub --write-comments --cookies youtube.com_cookies.txt "$videourl"
 done < videoids.txt

@@ -21,5 +21,5 @@ mkdir -p video
 while read line
 do
   videourl='https://youtu.be/'"$line"
-  yt-dlp -o "video/%(upload_date)s_%(title)s_[%(id)s].%(ext)s" -f "bestvideo+bestaudio/best" --add-metadata --embed-thumbnail --cookies youtube.com_cookies.txt "$videourl"
+  yt-dlp -o "video/%(upload_date)s_%(title).190B_[%(id)s].%(ext)s" -f "bestvideo+bestaudio/best" --add-metadata --embed-thumbnail --cookies youtube.com_cookies.txt "$videourl"
 done < videoids.txt
